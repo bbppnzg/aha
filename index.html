@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1, minimum-scale=1, user-scalable=no">
+<title>大家好才是真的好</title>
+    
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<style>
+blockquote, body, dd, dir, dl, fieldset, figure, form, h1, h2, h3, h4, h5, h6, hr, input, legend, menu, ol, optgroup, p, pre, tbody, td, textarea, tfoot, th, thead, ul, xxx {
+	margin: 0;
+	padding: 0
+}
+body{
+    background:#FFFFFF;
+}
+ol, ul {
+	list-style-type: none;
+	list-style-image: none
+}
+
+body, button, input, select, textarea {
+	-ms-text-autospace: ideograph-alpha ideograph-numeric ideograph-parenthesis;
+	text-autospace: ideograph-alpha ideograph-numeric ideograph-parenthesis
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 400
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+	background: 1px dashed #f54d23;
+	border: 0.2px;
+	padding: 0.8px;
+}
+
+.beatHeader {
+	background: #494A4D;
+	height: 50px;
+	width: 100%;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+}
+
+.beatMain {
+	position: relative;
+	z-index: 2;
+	padding: 0 10px;
+}
+
+.beatMain .imgContainer {
+	padding: 0 16px;
+	margin-top: 5px;
+}
+
+.beatMain .imgContainer img {
+	width: 70%;
+	height: auto;
+	box-shadow: 0px 3px 12px rgba(21, 0, 71, 0.16);
+	margin: 0 auto;
+}
+.beatMain .imgContaine img {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+.beatMain .moonTitleContainer {
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.4);
+	margin-bottom: 16px;
+}
+
+.beatMain .moonTitleContainer span {
+	color: #FF5500;
+	margin-right: 16px;
+}
+
+.beatMain .itemContent {
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.80);
+	line-height: 21px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.beatMain .itemPrice {
+	font-family: STHeitiSC-Light;
+	font-size: 16px;
+	color: #FF5500;
+	line-height: 16.5px;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.beatMain .itemTips {
+	font-size: 12px;
+	color: rgba(0,0,0,.4);
+	text-align: center;
+}
+
+.beatWord {
+	text-align: center;
+}
+
+.beatWord fieldset {
+	padding: 0.7em;
+	margin: 0 2px;
+	border: 1px dashed #f54d23;
+
+}
+
+.beatWord fieldset legend {
+	border: none;
+	font-size: 0.8rem;
+	line-height: 20px;
+	color: #fff;
+	padding: 0 4px;
+	background-color: #f54d23;
+}
+
+.beatWord button {
+	border: none;
+	font-size: 16px;
+	padding: 6px 40px;
+	display: inline-block;
+	margin: 10px auto;
+	border-radius: 6px;
+	color: #fff;
+	background-color: #FF6600;
+}
+
+.xxx fieldset {
+	padding: 0.3em;
+	margin: 0 2px;
+	border: 1px dashed #CC6699;
+
+}
+
+.xxx {
+	position: relative;
+	padding: 0 10px;
+	z-index: 10;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+</style>
+
+
+</head>
+
+<body><div style="border: 1px ; max-width: 450px; margin: 0 auto;">
+
+
+<div class="beatMain">
+	<div align="center" class="imgContainer">
+	<img id="img" src="" alt=""></div>
+	<p class="itemContent">
+		<strong class="itemPrice"></strong>
+  </p><div id="item_title" style="font-weight: 700;font-size: 14px;margin-bottom: 5px;">
+	<p></p>
+</div>
+	
+	<div class="beatWord">
+		<fieldset>
+			<legend id="copy_tip">点击“一键复制”&gt;打开手机淘宝&gt;即可购买</legend>
+			<p id="itemWord" class="itemWord" style="font-size: 12px;">长按复制框内整段文字，打开「手机淘宝」自动弹出「优惠券和返利」领取入口并购买<span id="taokey"></span></p>
+		</fieldset>
+
+       
+		<button id="copy" type="button" data-clipboard-text="" class="itemCopy" style="width:50%;display: inline-block;">手机一键复制</button>
+
+
+      <button id="coupons" type="button" data-clipboard-text="" class="itemCopy2" style="background: #99CC33;border: none;font-size: 16px;padding: 6px;display: inline-block;color: #fff;text-decoration: none;width:45%;">复制浏览器打开</button>
+        
+
+ 
+
+<br>
+</div></div>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/clipboard.js/1.7.0/clipboard.min.js"></script>
+<script>
+function getParams(paras){
+	var url = decodeURI(location.href);
+    var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+    var returnValue;
+    for (i = 0; i < paraString.length; i++) {
+        var tempParas = paraString[i].split('=')[0];
+        var parasValue = paraString[i].split('=')[1];
+        if (tempParas === paras)
+            returnValue = parasValue;
+    }
+    if (typeof(returnValue) == "undefined") {
+        return "";
+    } else {
+        return returnValue;
+    }
+}
+
+$(function(){
+	var taowords =getParams('taowords');
+	var url = decodeURIComponent(getParams('url'));
+	var image = decodeURIComponent(getParams('image'));
+	var kouling ='123';	
+	
+	
+	$('#img').attr('src', image);
+	$('#coupons').attr('data-clipboard-text',url);
+	$('#copy').attr('data-clipboard-text', '('+taowords+')');
+	$('#taokey').text('('+taowords+')');
+	$('#kouling').attr('data-clipboard-text',kouling);
+})
+
+var clipboard = new Clipboard('.itemCopy');
+clipboard.on('success',
+function(e) {
+	if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
+		e.trigger.innerHTML = "复制成功，打开淘宝自动弹出优惠";
+		e.trigger.style.backgroundColor = "#9ED29E";
+		e.trigger.style.borderColor = "#9ED29E";
+		e.trigger.disabled = true;
+		//2秒后按钮恢复原状
+		setTimeout(function() {
+			e.trigger.innerHTML = "一键复制";
+			e.trigger.style.backgroundColor = "#FF6600";
+			e.trigger.style.borderColor = "#f54d23";
+			e.trigger.disabled = false;
+		},
+		2000);
+	}
+});
+
+clipboard.on('error',
+function(e) {
+	e.trigger.innerHTML = "复制失败";
+	e.trigger.style.backgroundColor = "#8f8f8f";
+	e.trigger.style.borderColor = "#8f8f8f";
+});
+
+var clipboard = new Clipboard('.itemCopy3');
+clipboard.on('success',
+function(e) {
+	if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
+		e.trigger.innerHTML = "复制成功，打开淘宝自动弹出优惠";
+		e.trigger.style.backgroundColor = "#9ED29E";
+		e.trigger.style.borderColor = "#9ED29E";
+		//e.clearSelection();
+		e.trigger.disabled = true;
+		//2秒后按钮恢复原状
+		setTimeout(function() {
+			e.trigger.innerHTML = "双11红包口令，点击后打开淘宝APP领取<br>【红包与返利不同享，会出现返利减半或没有返利，请根据实际情况使用】";
+			e.trigger.style.backgroundColor = "#ec5050";
+			e.trigger.style.borderColor = "#f54d23";
+			e.trigger.disabled = false;
+		},
+		4000);
+	}
+});
+
+clipboard.on('error',
+function(e) {
+	e.trigger.innerHTML = "复制失败";
+	e.trigger.style.backgroundColor = "#8f8f8f";
+	e.trigger.style.borderColor = "#8f8f8f";
+});
+
+var clipboard = new Clipboard('.itemCopy2');
+clipboard.on('success',
+function(e) {
+	if (e.trigger.disabled == false || e.trigger.disabled == undefined) {
+		e.trigger.innerHTML = "PC连接复制成功，请到电脑浏览器粘贴访问";
+		e.trigger.style.backgroundColor = "#9ED29E";
+		e.trigger.style.borderColor = "#9ED29E";
+		//e.clearSelection();
+		e.trigger.disabled = true;
+		//2秒后按钮恢复原状
+		setTimeout(function() {
+			e.trigger.innerHTML = "电脑链接";
+			e.trigger.style.backgroundColor = "#99CC33";
+			e.trigger.style.borderColor = "#f54d23";
+			e.trigger.disabled = false;
+		},
+		2000);
+	}
+});
+
+clipboard.on('error',
+function(e) {
+	e.trigger.innerHTML = "复制失败";
+	e.trigger.style.backgroundColor = "#8f8f8f";
+	e.trigger.style.borderColor = "#99CC33";
+});
+
+$(function() {
+
+	//UA判断
+	var isShow = 0; //控制是否显示一键复制按钮
+	var ua = navigator.userAgent.toLowerCase();
+
+	if (ua.match(/iphone/i) == "iphone" || ua.match(/ipad/i) == "ipad") {
+
+		$('#copy_tip').text("长按框内 > 拷贝 > 打开手淘");
+		var iphoneInfo = ua.match(/iphone os (\d{1,})/i);
+		var iosVersion = iphoneInfo[1];
+		if (iosVersion >= 10 || ua.match(/ipad/i) == 'ipad') {
+			$('.itemCopy').show();
+		}
+
+	} else {
+		$('.itemCopy').show();
+	}
+
+	//自动选中
+	var beat = document.querySelector('.beatWord');
+	var word = document.querySelector('.itemWord');
+	var copy = document.querySelector('.itemCopy');
+	document.addEventListener("selectionchange",
+	function(e) {
+		window.getSelection().selectAllChildren(word);
+	},
+	false);
+});
+</script>
+
+</div>	
+  	</p>
+<div class="beatWord">
+                  
+       <fieldset>
+
+			<legend id="copy_tip" style="background: #ff0000;" >下单注意事项</legend>
+
+			<p style="font-size: 12px;text-align: left;">①请勿使用<span style="color:#ff0000;">红包抵扣</span>支付，会出现<span style="color:#ff0000;">返利减半</span>或<span style="color:#ff0000;">无返利</span></p>
+			<p style="font-size: 12px;text-align: left;"><span style="">②<span style="color:#ff0000;">购物车</span>之前有该物品请先<span style="color:#ff0000;">删除</span></span></p>
+
+			<p style="font-size: 12px;text-align: left;"><span style="">③打开手淘<span style="color:#ff0000;">弹出分享窗口</span>后下单，否则<span style="color:#ff0000;">重新</span>复制口令</span></p>
+			<p style="font-size: 12px;text-align: left;">④付款后2分钟没有<span style="color:#ff0000;">付费成功</span>提示，请<span style="color:#ff0000;">手动发送</span>订单号绑定返利  </p>
+  </fieldset>
+
+       
+      
+</div>
+</a><script type="text/javascript" src="./cs_files/jquery.js"></script><script type="text/javascript" src="./cs_files/entry.js"></script></body></html>
